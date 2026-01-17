@@ -8,15 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        [span_3](start_span)[span_4](start_span)/* CSS giữ nguyên phong cách hiện đại và tối ưu cho điện thoại[span_3](end_span)[span_4](end_span) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #ff6b6b; --secondary: #4ecdc4; --accent: #ffe66d; --dark: #2d3436; --light: #f9f9f9; --gradient: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); }
         body { font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; overflow-x: hidden; }
-        
         .floating-emoji { position: fixed; font-size: 2rem; animation: float 15s infinite linear; opacity: 0; pointer-events: none; z-index: 0; }
         @keyframes float { 0% { opacity: 0; transform: translateY(100vh) rotate(0deg); } 1% { opacity: 0.6; } 100% { opacity: 0.6; transform: translateY(-100vh) rotate(360deg); } }
-
         .container { max-width: 800px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-        
         .profile-card { background: white; border-radius: 30px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 30px; position: relative; overflow: hidden; text-align: center; }
         .profile-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 120px; background: var(--gradient); }
         .avatar-container { position: relative; width: 130px; height: 130px; margin: 0 auto 15px; z-index: 1; }
@@ -24,39 +22,29 @@
         .status-badge { position: absolute; bottom: 5px; right: 5px; background: #00b894; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 3px solid white; }
         .profile-name { font-size: 1.8rem; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
         .profile-tagline { color: #636e72; font-size: 1rem; margin-bottom: 20px; }
-
         .story-section { background: #f8f9fa; border-radius: 20px; padding: 20px; margin-top: 10px; text-align: left; }
         .story-title { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .story-content { color: #636e72; line-height: 1.6; font-size: 0.95rem; }
         .highlight { background: linear-gradient(180deg, transparent 60%, var(--accent) 60%); padding: 0 5px; font-weight: 600; }
-
         .donation-section { background: white; border-radius: 30px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 30px; }
         .section-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); text-align: center; margin-bottom: 20px; }
-        
         .amount-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; }
         .amount-card { border-radius: 15px; padding: 15px; text-align: center; cursor: pointer; border: 2px solid #f0f0f0; transition: 0.3s; }
         .amount-card.selected { border-color: var(--primary); background: #fff5f5; transform: scale(1.03); }
         .amount-value { font-size: 1.2rem; font-weight: 700; color: var(--dark); }
         .amount-desc { font-size: 0.8rem; color: #636e72; margin-top: 4px; }
-
         .method-container { display: flex; flex-direction: column; gap: 12px; }
         .method-btn { width: 100%; padding: 16px; border: none; border-radius: 15px; color: white; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
         .btn-momo { background: #ae2070; box-shadow: 0 6px 20px rgba(174, 32, 112, 0.3); }
         .btn-bank { background: #00468f; box-shadow: 0 6px 20px rgba(0, 70, 143, 0.3); }
         .method-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
-
         .marquee-container { overflow: hidden; background: rgba(255,255,255,0.1); padding: 10px 0; }
         .marquee { display: flex; animation: marquee 20s linear infinite; }
         .marquee-item { white-space: nowrap; padding: 0 40px; color: white; font-weight: 500; font-size: 0.9rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         .footer { text-align: center; padding: 30px 20px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
         .footer a { color: var(--accent); text-decoration: none; }
-
-        @media (max-width: 480px) {
-            .amount-grid { gap: 10px; }
-            .profile-card { padding: 30px 20px; }
-        }
+        @media (max-width: 480px) { .amount-grid { gap: 10px; } .profile-card { padding: 30px 20px; } }
     </style>
 </head>
 <body>
@@ -73,7 +61,6 @@
             </div>
             <h2 class="profile-name">TRAN NGUYEN CAT VU</h2>
             <p class="profile-tagline">Góc nhỏ của một Tech-boy 📱</p>
-
             <div class="story-section">
                 <h3 class="story-title">☕ Một ngày bình thường</h3>
                 <div class="story-content">
@@ -103,19 +90,20 @@
     </footer>
 
     <script>
+        [span_5](start_span)// Thông tin cá nhân đã được cập nhật[span_5](end_span)
         const MY_INFO = {
-            momoUser: "OeInTJsqtMiQuXunfwt8CP", 
-            bankID: "MB",                      
-            stk: "0328994250",                 
-            name: "TRAN NGUYEN CAT VU"                   
+            bankID: "MB",
+            stk: "0328994250",
+            name: "TRAN NGUYEN CAT VU"
         };
 
         const CONFIG = {
+            // Danh sách các mốc tiền với link MoMo riêng biệt mà bạn đã cung cấp
             amounts: [
-                { value: 10000, desc: "Ly trà đá vỉa hè", emoji: "🥤" },
-                { value: 20000, desc: "Ổ bánh mì đặc biệt", emoji: "🥪" },
-                { value: 50000, desc: "Thẻ nạp game nhẹ", emoji: "🎟️" },
-                { value: 100000, desc: "Phụ kiện công nghệ", emoji: "🔋" }
+                { value: 10000, desc: "Ly trà đá vỉa hè", emoji: "🥤", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/WPe99NKEoA3PeLy" },
+                { value: 20000, desc: "Ổ bánh mì đặc biệt", emoji: "🥪", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/WPe99NKEo0DYeLy" },
+                { value: 50000, desc: "Thẻ nạp game nhẹ", emoji: "🎟️", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/LDdw0w3qD02ge1Y" },
+                { value: 100000, desc: "Phụ kiện công nghệ", emoji: "🔋", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/olejYK39m1lRdjN" }
             ],
             marquee: [
                 "☕ Chào ngày mới với vài trận rank nhẹ nhàng...",
@@ -126,13 +114,10 @@
             emojis: ["🍜", "💰", "🎮", "☕", "🍕", "💻", "⭐"]
         };
 
+        [span_6](start_span)[span_7](start_span)[span_8](start_span)// Hàm tạo link VietQR cho ngân hàng[span_6](end_span)[span_7](end_span)[span_8](end_span)
         function generateBankLink(amount) {
             const msg = `Nuoi%20Tran%20Nguyen%20Cat%20Vu%20${amount}`;
             return `https://img.vietqr.io/image/${MY_INFO.bankID}-${MY_INFO.stk}-compact.jpg?amount=${amount}&addInfo=${msg}&accountName=${MY_INFO.name.replace(/ /g, '%20')}`;
-        }
-
-        function generateMomoLink(amount) {
-            return `https://me.momo.vn/${MY_INFO.momoUser}/${amount}`;
         }
 
         function init() {
@@ -144,7 +129,7 @@
 
             const grid = document.getElementById('amountGrid');
             grid.innerHTML = CONFIG.amounts.map((a, i) => `
-                <div class="amount-card ${i===1 ? 'selected' : ''}" data-amount="${a.value}">
+                <div class="amount-card ${i===1 ? 'selected' : ''}" data-amount="${a.value}" data-momo="${a.momoLink}">
                     <div style="font-size: 1.5rem;">${a.emoji}</div>
                     <div class="amount-value">${new Intl.NumberFormat('vi-VN').format(a.value)}đ</div>
                     <div class="amount-desc">${a.desc}</div>
@@ -155,22 +140,22 @@
             const momoBtn = document.getElementById('momoBtn');
             const bankBtn = document.getElementById('bankBtn');
 
-            function updateLinks(amount) {
-                momoBtn.href = generateMomoLink(amount);
+            function updateLinks(amount, momoUrl) {
+                momoBtn.href = momoUrl;
                 bankBtn.href = generateBankLink(amount);
             }
 
-            updateLinks(20000);
+            // Khởi tạo mặc định mức 20k
+            updateLinks(20000, CONFIG.amounts[1].momoLink);
 
             cards.forEach(card => {
                 card.addEventListener('click', () => {
                     cards.forEach(c => c.classList.remove('selected'));
                     card.classList.add('selected');
-                    updateLinks(parseInt(card.dataset.amount));
+                    updateLinks(parseInt(card.dataset.amount), card.dataset.momo);
                 });
             });
         }
-
         init();
     </script>
 </body>
