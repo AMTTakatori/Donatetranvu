@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        [span_3](start_span)[span_4](start_span)/* CSS giữ nguyên phong cách hiện đại và tối ưu cho điện thoại[span_3](end_span)[span_4](end_span) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #ff6b6b; --secondary: #4ecdc4; --accent: #ffe66d; --dark: #2d3436; --light: #f9f9f9; --gradient: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); }
         body { font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; overflow-x: hidden; }
@@ -44,7 +43,7 @@
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .footer { text-align: center; padding: 30px 20px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
         .footer a { color: var(--accent); text-decoration: none; }
-        @media (max-width: 480px) { .amount-grid { gap: 10px; } .profile-card { padding: 30px 20px; } }
+        @media (max-width: 480px) { .amount-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .profile-card { padding: 30px 20px; } }
     </style>
 </head>
 <body>
@@ -73,6 +72,7 @@
         <div class="donation-section">
             <h2 class="section-title">💝 Nuôi Tôi Ngay!</h2>
             <div class="amount-grid" id="amountGrid"></div>
+            
             <div class="method-container">
                 <a href="#" target="_blank" class="method-btn btn-momo" id="momoBtn">
                     <span>💜 Chuyển qua MoMo</span>
@@ -90,7 +90,6 @@
     </footer>
 
     <script>
-        [span_5](start_span)// Thông tin cá nhân đã được cập nhật[span_5](end_span)
         const MY_INFO = {
             bankID: "MB",
             stk: "0328994250",
@@ -98,7 +97,6 @@
         };
 
         const CONFIG = {
-            // Danh sách các mốc tiền với link MoMo riêng biệt mà bạn đã cung cấp
             amounts: [
                 { value: 10000, desc: "Ly trà đá vỉa hè", emoji: "🥤", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/WPe99NKEoA3PeLy" },
                 { value: 20000, desc: "Ổ bánh mì đặc biệt", emoji: "🥪", momoLink: "https://me.momo.vn/OeInTJsqtMiQuXunfwt8CP/WPe99NKEo0DYeLy" },
@@ -114,38 +112,46 @@
             emojis: ["🍜", "💰", "🎮", "☕", "🍕", "💻", "⭐"]
         };
 
-        [span_6](start_span)[span_7](start_span)[span_8](start_span)// Hàm tạo link VietQR cho ngân hàng[span_6](end_span)[span_7](end_span)[span_8](end_span)
         function generateBankLink(amount) {
             const msg = `Nuoi%20Tran%20Nguyen%20Cat%20Vu%20${amount}`;
             return `https://img.vietqr.io/image/${MY_INFO.bankID}-${MY_INFO.stk}-compact.jpg?amount=${amount}&addInfo=${msg}&accountName=${MY_INFO.name.replace(/ /g, '%20')}`;
         }
 
         function init() {
+            // Render emojis bay
             const container = document.getElementById('floatingEmojisContainer');
-            container.innerHTML = CONFIG.emojis.map((e, i) => `<div class="floating-emoji" style="left:${10+(i*15)}%; animation-delay:${i*2}s;">${e}</div>`).join('');
+            if(container) {
+                container.innerHTML = CONFIG.emojis.map((e, i) => `<div class="floating-emoji" style="left:${10+(i*15)}%; animation-delay:${i*2}s;">${e}</div>`).join('');
+            }
 
+            // Render dòng chữ chạy
             const marquee = document.getElementById('marqueeContent');
-            marquee.innerHTML = [...CONFIG.marquee, ...CONFIG.marquee].map(item => `<span class="marquee-item">${item}</span>`).join('');
+            if(marquee) {
+                marquee.innerHTML = [...CONFIG.marquee, ...CONFIG.marquee].map(item => `<span class="marquee-item">${item}</span>`).join('');
+            }
 
+            // Render khung chọn tiền (amount grid)
             const grid = document.getElementById('amountGrid');
-            grid.innerHTML = CONFIG.amounts.map((a, i) => `
-                <div class="amount-card ${i===1 ? 'selected' : ''}" data-amount="${a.value}" data-momo="${a.momoLink}">
-                    <div style="font-size: 1.5rem;">${a.emoji}</div>
-                    <div class="amount-value">${new Intl.NumberFormat('vi-VN').format(a.value)}đ</div>
-                    <div class="amount-desc">${a.desc}</div>
-                </div>
-            `).join('');
+            if(grid) {
+                grid.innerHTML = CONFIG.amounts.map((a, i) => `
+                    <div class="amount-card ${i===1 ? 'selected' : ''}" data-amount="${a.value}" data-momo="${a.momoLink}">
+                        <div style="font-size: 1.5rem;">${a.emoji}</div>
+                        <div class="amount-value">${new Intl.NumberFormat('vi-VN').format(a.value)}đ</div>
+                        <div class="amount-desc">${a.desc}</div>
+                    </div>
+                `).join('');
+            }
 
             const cards = document.querySelectorAll('.amount-card');
             const momoBtn = document.getElementById('momoBtn');
             const bankBtn = document.getElementById('bankBtn');
 
             function updateLinks(amount, momoUrl) {
-                momoBtn.href = momoUrl;
-                bankBtn.href = generateBankLink(amount);
+                if(momoBtn) momoBtn.href = momoUrl;
+                if(bankBtn) bankBtn.href = generateBankLink(amount);
             }
 
-            // Khởi tạo mặc định mức 20k
+            // Mặc định chọn mức 20k khi vừa tải trang
             updateLinks(20000, CONFIG.amounts[1].momoLink);
 
             cards.forEach(card => {
@@ -156,7 +162,9 @@
                 });
             });
         }
-        init();
+        
+        // Chạy khởi tạo sau khi trang web đã tải xong
+        window.onload = init;
     </script>
 </body>
 </html>
