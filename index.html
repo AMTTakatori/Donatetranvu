@@ -186,5 +186,88 @@
         // Chạy khởi tạo sau khi trang web đã tải xong
         window.onload = init;
     </script>
+         <!-- HUB NHẠC -->
+         <div style="
+                  position:fixed;
+                  bottom:20px;
+                  right:20px;
+                  z-index:999;
+                  background:rgba(0,0,0,0.6);
+                  padding:12px;
+                  border-radius:18px;
+                  backdrop-filter:blur(10px);
+                  box-shadow:0 0 20px rgba(0,0,0,0.3);
+         ">
+
+                  <select id="musicSelect" onchange="changeMusic()" style="
+                           padding:10px;
+                           border:none;
+                           border-radius:12px;
+                           outline:none;
+                           font-family:sans-serif;
+                           max-width:220px;
+                  ">
+
+                           <option value="https://pixeldrain.com/api/file/WKeqcdsK">
+                                    🎧 Thế x Tiếc Làm Gì
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/THoXUWGJ">
+                                    💔 1 Tình Yêu 2 Thử Thách
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/DESnJDXB">
+                                    🌙 Em Ơi Anh Phải Làm Sao
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/ubT9K9v5">
+                                    🥀 Sau Này Anh Cưới Ai
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/gujT2Ysw">
+                                    ✨ kimi no kimi no…
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/1AckS9iL">
+                                    ☁️ Thương Nhau Đến Thế
+                           </option>
+
+                           <option value="https://pixeldrain.com/api/file/8dqvBC6o">
+                                    🖤 Yêu Thật Khó Xoá Thật Đau
+                           </option>
+
+                  </select>
+
+                  <button onclick="playMusic()" style="
+                           margin-left:5px;
+                           padding:10px 14px;
+                           border:none;
+                           border-radius:12px;
+                           cursor:pointer;
+                           font-weight:bold;
+                  ">
+                           ▶
+                  </button>
+
+         </div>
+
+         <audio id="bgMusic" loop></audio>
+
+         <script>
+                  const music = document.getElementById("bgMusic");
+                  const select = document.getElementById("musicSelect");
+
+                  function changeMusic(){
+                           music.src = select.value;
+                           music.play();
+                  }
+
+                  function playMusic(){
+                           if(music.src === ""){
+                                    music.src = select.value;
+                           }
+                           music.play();
+                  }
+         </script>
 </body>
 </html>
