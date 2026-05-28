@@ -251,23 +251,32 @@
 
          </div>
 
-         <audio id="bgMusic" loop></audio>
+         <audio id="bgMusic" loop controls hidden></audio>
 
          <script>
-                  const music = document.getElementById("bgMusic");
-                  const select = document.getElementById("musicSelect");
+         const music = document.getElementById("bgMusic");
+         const select = document.getElementById("musicSelect");
 
-                  function changeMusic(){
+         music.volume = 1.0;
+
+         function changeMusic(){
+                  music.src = select.value;
+                  music.load();
+
+                  music.play().catch(() => {
+                           console.log("iPhone chặn autoplay");
+                  });
+         }
+
+         function playMusic(){
+                  if(music.src === ""){
                            music.src = select.value;
-                           music.play();
                   }
 
-                  function playMusic(){
-                           if(music.src === ""){
-                                    music.src = select.value;
-                           }
-                           music.play();
-                  }
+                  music.play().catch(() => {
+                           alert("Bấm lại lần nữa để phát nhạc 👀");
+                  });
+         }
          </script>
 </body>
 </html>
